@@ -2,7 +2,16 @@ package com.suitbots.util;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-/// A wrapper around Gamepad meant mostly to notify you exactly once when a button is pressed
+/** A wrapper around Gamepad meant mostly to notify you exactly once when a button is pressed.
+ *
+ * The most compelling reason to use this is to avoid having to manage external state in order
+ * to get single event button presses. For all of the boolean buttons on the gamepad -- that is,
+ * everything except the triggers and sticks -- along with methods to see if they are pressed
+ * this class also provides methods to tell you if they were only *just* pressed this update
+ * cycle. So you could call `controller.X()` to see if the X button is pressed, or
+ * `controller.XOnce()` to see if X was pressed during this loop cycle. This is handy for
+ * building in toggles and the like.
+ */
 public class Controller {
     private final Gamepad gamepad;
 
@@ -17,6 +26,9 @@ public class Controller {
         gamepad = g;
     }
 
+    /**
+     * Call this once per `loop()` to refresh values from the underlying Gamepad
+     */
     public void update() {
         if (gamepad.x) {
             ++x;
@@ -77,82 +89,142 @@ public class Controller {
         right_trigger = gamepad.right_trigger;
     }
 
+    /**
+     * @return true if the dpad up button is pressed
+     */
     public boolean dpadUp() {
         return 0 < dpad_up;
     }
 
+    /**
+     * @return true if the dpad down button is pressed
+     */
     public boolean dpadDown() {
         return 0 < dpad_down;
     }
 
+    /**
+     * @return true if the dpad left button is pressed
+     */
     public boolean dpadLeft() {
         return 0 < dpad_left;
     }
 
+    /**
+     * @return true if the dpad right button is pressed
+     */
     public boolean dpadRight() {
         return 0 < dpad_right;
     }
 
+    /**
+     * @return true if X is pressed
+     */
     public boolean X() {
         return 0 < x;
     }
 
+    /**
+     * @return true if Y is pressed
+     */
     public boolean Y() {
         return 0 < y;
     }
 
+    /**
+     * @return true if A is pressed
+     */
     public boolean A() {
         return 0 < a;
     }
 
+    /**
+     * @return true if B is pressed
+     */
     public boolean B() {
         return 0 < b;
     }
 
+    /**
+     * @return true if the left bumper is pressed
+     */
     public boolean leftBumper() {
         return 0 < left_bumper;
     }
 
+    /**
+     * @return true if the right bumper is pressed
+     */
     public boolean rightBumper() {
         return 0 < right_bumper;
     }
 
+    /**
+     * @return true if this is the first update since the dpad up button was pressed
+     */
     public boolean dpadUpOnce() {
         return 1 == dpad_up;
     }
 
+    /**
+     * @return true if this is the first update since the dpad down button was pressed
+     */
     public boolean dpadDownOnce() {
         return 1 == dpad_down;
     }
 
+    /**
+     * @return true if this is the first update since the dpad left button was pressed
+     */
     public boolean dpadLeftOnce() {
         return 1 == dpad_left;
     }
 
+    /**
+     * @return true if this is the first update since the dpad right button was pressed
+     */
     public boolean dpadRightOnce() {
         return 1 == dpad_right;
     }
 
+    /**
+     * @return true if this is the first update since X was pressed
+     */
     public boolean XOnce() {
         return 1 == x;
     }
 
+    /**
+     * @return true if this is the first update since Y was pressed
+     */
     public boolean YOnce() {
         return 1 == y;
     }
 
+    /**
+     * @return true if this is the first update since A was pressed
+     */
     public boolean AOnce() {
         return 1 == a;
     }
 
+    /**
+     * @return true if this is the first update since B was pressed
+     */
     public boolean BOnce() {
         return 1 == b;
     }
 
+    /**
+     * @return true if this is the first update since the left bumper was pressed
+     */
     public boolean leftBumperOnce() {
         return 1 == left_bumper;
     }
 
+    /**
+     * @return true if this is the first update since the right bumper was pressed
+     */
     public boolean rightBumperOnce() {
         return 1 == right_bumper;
     }

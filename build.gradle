@@ -11,8 +11,8 @@ buildscript {
 }
 
 allprojects {
-    version = 0.1
-    group = 'com.suitbots.util'
+    version = 0.0
+    group = 'com.suitbots'
     repositories {
         jcenter()
         maven {
