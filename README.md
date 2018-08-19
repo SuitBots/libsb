@@ -54,3 +54,24 @@ direction of your robot.
             right.setPower(c1.right_stick_y * (forward ? 1.0 : -1.0));
         }
     }
+
+### Blinken
+
+This class wraps the FTC Servo class for use with Rev's Blinken lights controller.
+Pass its constructor a servo and then call its named methods for blinking goodness.
+
+    import com.suitbots.util.Blinken;
+
+    [...]
+
+    @Override public void runOpMode() {
+        final Blinken blinken = new Blinken(hardwareMap.servo.get("led"));
+        waitForStart();
+        while(opModeIsActive()) {
+            if (gamepad1.a) {
+                blinken.enactSolidRed();
+            } else {
+                blinken.off(); // or blinken.enactSolidBlack()
+            }
+        }
+    }
