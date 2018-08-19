@@ -13,7 +13,7 @@ First add the library to your list of dependencies. Here's an example
     }
     dependencies {
         repositories { mavenCentral() }
-        compile 'com.suitbots:libsb:0.0.1'
+        compile 'com.suitbots:libsb:0.0.2'
     }
 
 The `dependencies` stanza is the important addition.
